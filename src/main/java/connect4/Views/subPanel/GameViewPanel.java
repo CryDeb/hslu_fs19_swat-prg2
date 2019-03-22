@@ -13,30 +13,31 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
+import static connect4.Views.subPanel.PlayerTurn.*;
+import static connect4.Views.subPanel.PlayerTurn.LOCAL_PLAYER;
+
 /**
  * @author dane
  */
 public class GameViewPanel extends JPanel implements GameView{
-
     private GameViewListener gameViewListener;
     private PlayGround playGround;
     private JTextField stateTextField;
     
     private boolean dialogOpened;
-    private int playerState;
 
     public GameViewPanel() {
         this.initComponent();
     }
 
     private void initComponent() {
-        this.playerState = 1;
         this.dialogOpened = false;
         this.playGround = new PlayGround(6, 4);
         this.stateTextField = new JTextField();
         this.stateTextField.setEditable(false);
         this.stateTextField.setMaximumSize(new Dimension(1000, 20));
         playGround.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e){
                 if(playGround.notFull())
                     gameViewListener.DiskColumnPressed(playGround.getColumn());
@@ -65,24 +66,18 @@ public class GameViewPanel extends JPanel implements GameView{
                 .addComponent(playGround, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
-        
-        
-        
-        //this.add(this.playGround);
     }
     
     @Override
     public void showNewDiskForMe(int column, int row) {
-        this.setPlayer(0);
+        this.setPlayer(OTHER_PLAYER);
         playGround.playerDiskPlayedUpsideDown(column, row);
-        System.out.println("x-> " + column + "   y-> " + row);
     }
     
     @Override
     public void showNewDiskForOpponent(int column, int row) {
-        this.setPlayer(1);
+        this.setPlayer(LOCAL_PLAYER);
         playGround.opponentDiskPlayedUpsideDown(column, row);
-        System.out.println("x-> " + column + "   y-> " + row);
     }
 
     @Override
@@ -107,19 +102,15 @@ public class GameViewPanel extends JPanel implements GameView{
             this.dialogOpened = false;
         }
     }
-    public void startGame(){
-        this.dialogOpened = false;
-        playGround.start();
-    }
+
     public void startGame(int x, int y){
         playGround.start(x, y);
         this.repaint();
         this.dialogOpened = false;
     }
-    public void startGame(Dimension size, int x, int y){
-        playGround = new PlayGround(size, x, y);
-        this.dialogOpened = false;
-    }
+
+
+    @Override
     public Dimension getSize(){
         return this.playGround.getSize();
     }
@@ -131,18 +122,31 @@ public class GameViewPanel extends JPanel implements GameView{
     }
 
     @Override
-    public void setPlayer(int gameState) {
-        switch(gameState){
-            case 0:
-                stateTextField.setText("Your Turn!");
-                playGround.setEnabled(true);
-                this.playerState = 1;
-                break;
-            case 1:
-                this.playerState = 0;
-                stateTextField.setText("Waiting for opponent...");
-                playGround.setEnabled(false);  
-                break;
+    public void setPlayer(final PlayerTurn playerTurn) {
+        if(playerTurn != null && playerTurn == LOCAL_PLAYER){
+            setLocalPlayerTurn();
+        } else{
+            setOopponentPlayerTurn();
         }
+    }
+
+    private void setLocalPlayerTurn(){
+        stateTextField.setText("Your Turn!");
+        enablePlayGroundForUser();
+    }
+
+    private void setOopponentPlayerTurn(){
+        stateTextField.setText("Waiting for opponent...");
+        disablePlayGroundForUser();
+
+    }
+
+
+    private void enablePlayGroundForUser(){
+        playGround.setEnabled(true);
+    }
+
+    private void disablePlayGroundForUser(){
+        playGround.setEnabled(false);
     }
 }

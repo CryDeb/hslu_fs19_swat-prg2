@@ -10,6 +10,7 @@ import connect4.Views.Interfaces.LocalGameCreationView;
 import connect4.Views.Interfaces.NetworkView;
 import connect4.Views.Interfaces.StartView;
 import connect4.Views.Interfaces.ViewHandler;
+import connect4.Views.subPanel.PlayerTurn;
 
 public class Navigator {
 
@@ -62,7 +63,7 @@ public class Navigator {
         GameView view = this.switchToGameViewWithSizeDefinedInSettings();
         GameViewController controller = new NetworkGameViewController(view, this, this.networkRequestManager, ipAddress);
         view.setListener(controller);
-        view.setPlayer(1);
+        view.setPlayer(PlayerTurn.OTHER_PLAYER);
         controller.init(GameState.OpponentsTurn);
     }
     
@@ -70,7 +71,7 @@ public class Navigator {
         GameView view = this.switchToGameViewWithSizeDefinedInSettings();
         GameViewController controller = new NetworkGameViewController(view, this, this.networkRequestManager, ipAddress);
         view.setListener(controller);
-        view.setPlayer(0);
+        view.setPlayer(PlayerTurn.LOCAL_PLAYER);
         controller.init(GameState.MyTurn);
     }
 

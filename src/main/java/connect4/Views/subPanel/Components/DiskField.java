@@ -40,9 +40,7 @@ class DiskField {
         return this.played;
     }
     
-    public void draw(int x, int y, Graphics g){/*
-        g.setColor(Color.RED);
-        g.fillOval(x, y, 20, 20);*/
+    public void draw(int x, int y, Graphics g){
         if(this.played){
             g.setColor(this.color);
         }else{
