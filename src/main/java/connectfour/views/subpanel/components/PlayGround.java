@@ -68,9 +68,7 @@ public class PlayGround extends JComponent{
         super.paintComponent(graphics);
         if(this.isEnabled()){
             graphics.setColor(currentPlayer==0 ? playerColor : opponentColor);
-            ((Graphics2D) (graphics)).fill(new Arc2D.Double(this.currentLocation*
-                    (this.spaceX+this.diskSize)+(this.spaceX), 0, this.diskSize, 
-                    this.diskSize, 0, 180, Arc2D.PIE));
+            ((Graphics2D) (graphics)).fill(getArc2DPie());
         }
         
         graphics.setColor(this.backgroundColor);
@@ -84,6 +82,10 @@ public class PlayGround extends JComponent{
             }
             x+=this.spaceX+this.diskSize;
         }
+    }
+
+    private Arc2D getArc2DPie(){
+        return new Arc2D.Double((double) currentLocation * (spaceX + diskSize) + (spaceX), 0, this.diskSize, this.diskSize, 0, 180, Arc2D.PIE);
     }
 
     private void mouseMovedInComponent(MouseEvent event){

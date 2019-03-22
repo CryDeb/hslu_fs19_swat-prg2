@@ -1,8 +1,8 @@
 package connectfour.model.network.request.handling;
 
-import connectfour.controller.Navigator;
-import connectfour.model.network.Settings;
 import connectfour.model.OpponentHasMadeATurnListener;
+import connectfour.model.network.Settings;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,7 +18,6 @@ public class NetworkRequestManager {
     private final ExecutorService threadPool;
 
     private boolean continueHandlingRequests;
-    private Navigator navigator;
 
     public NetworkRequestManager(RequestHandlerFactory requestHandlerFactory) {
         this.requestHandlerFactory = requestHandlerFactory;
@@ -41,8 +40,8 @@ public class NetworkRequestManager {
                 RequestHandler requestHandler = this.requestHandlerFactory.createRequestHandler(connectionSocket);
                 this.threadPool.submit(() -> callHandlerAndAfterwardsCloseSocket(requestHandler, connectionSocket));
             }
-        } catch (IOException e) {
-            System.err.println("Unable to process client request");
+        } catch (IOException ignore) {
+            // ignore exception
         }
     }
 

@@ -11,10 +11,7 @@ public class HelpViewController implements HelpViewListener {
     }
 
     @Override
-    public void BackPressed() {
+    public void backPressed() {
         this.navigator.navigateToStartView();
-    }
-
-    void init() {
     }
 }

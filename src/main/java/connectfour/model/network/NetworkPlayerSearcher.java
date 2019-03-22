@@ -33,7 +33,7 @@ public class NetworkPlayerSearcher {
     private void continuouslySearchPlayers() {
         while (this.continueSearching) {
             try {
-                SearchPlayersAndThrowEvent();
+                searchPlayersAndThrowEvent();
                 Thread.sleep(10000);
             } catch (IOException | InterruptedException ex) {
                 Logger.getLogger(NetworkPlayerSearcher.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,15 +41,15 @@ public class NetworkPlayerSearcher {
         }
     }
 
-    private void SearchPlayersAndThrowEvent() throws IOException {
-        final List<String> availableHosts = this.GetAvailableHostsInNetwork();
-        final List<String> answeringHosts = this.GetAnsweringHosts(availableHosts);
+    private void searchPlayersAndThrowEvent() throws IOException {
+        final List<String> availableHosts = this.getAvailableHostsInNetwork();
+        final List<String> answeringHosts = this.getAnsweringHosts(availableHosts);
         if (this.newPlayersFoundListener != null && !answeringHosts.isEmpty()) {
-            newPlayersFoundListener.NewPlayersFound(answeringHosts);
+            newPlayersFoundListener.newPlayersFound(answeringHosts);
         }
     }
 
-    private List<String> GetAvailableHostsInNetwork() throws IOException {
+    private List<String> getAvailableHostsInNetwork() throws IOException {
         List<String> availableHosts = new ArrayList<>();
 
         InetAddress localHostLANAddress = LocalIpProvider.getLocalHostLANAddress();
@@ -60,7 +60,6 @@ public class NetworkPlayerSearcher {
             if (!host.equals(localHostAddress)) {
                 int timeoutInMilliseconds = 200;
                 boolean isReachable = InetAddress.getByName(host).isReachable(timeoutInMilliseconds);
-                System.out.println(host + " -> " + isReachable);
                 if (isReachable) {
                     availableHosts.add(host);
                 }
@@ -70,7 +69,7 @@ public class NetworkPlayerSearcher {
         return availableHosts;
     }
 
-    private List<String> GetAnsweringHosts(final List<String> availableHosts) {
+    private List<String> getAnsweringHosts(final List<String> availableHosts) {
         List<String> answeringHosts = new ArrayList<>();
 
         for (String host : availableHosts) {
@@ -78,14 +77,15 @@ public class NetworkPlayerSearcher {
                 try (Socket hostSocket = new Socket(host, this.port)) {
                     DataOutputStream streamToHost = new DataOutputStream(hostSocket.getOutputStream());
                     BufferedReader streamFromHost = new BufferedReader(new InputStreamReader(hostSocket.getInputStream()));
-                    streamToHost.writeBytes(ProtocolKeywords.AvailableNetworkPlayerListingRequest + "\n");
+                    streamToHost.writeBytes(ProtocolKeywords.AVAILABLE_NETWORK_PLAYER_LISTING_REQUEST + "\n");
                     streamToHost.flush();
                     String response = streamFromHost.readLine();
-                    if (ProtocolKeywords.AvailableNetworkPlayerListingAnswer.equals(response)) {
+                    if (ProtocolKeywords.AVAILABLE_NETWORK_PLAYER_LISTING_ANSWER.equals(response)) {
                         answeringHosts.add(host);
                     }
                 }
             } catch (IOException ignored) {
+                // this one is ignored
             }
         }
 

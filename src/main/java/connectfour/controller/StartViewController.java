@@ -10,21 +10,18 @@ public class StartViewController implements StartViewListener {
         this.navigator = navigator;
     }
 
-    public void init() {
-    }
-
     @Override
-    public void PlayerAgainstComputerPressed() {
+    public void playerAgainstComputerPressed() {
         this.navigator.navigateToLocalGameCreationView();
     }
 
     @Override
-    public void PlayOverNetworkPressed() {
+    public void playOverNetworkPressed() {
         this.navigator.navigateToNetworkView();
     }
 
     @Override
-    public void OpenHelpPressed() {
+    public void openHelpPressed() {
         this.navigator.navigateToHelpView();
     }
 }

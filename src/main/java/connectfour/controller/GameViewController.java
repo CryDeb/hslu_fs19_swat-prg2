@@ -53,11 +53,11 @@ public abstract class GameViewController implements GameViewListener, TurnEvalua
     }
 
     private void notifyViewAboutWinIfRequired(WinState winState) {
-        if (winState == WinState.OpponentWon) {
+        if (winState == WinState.OPPONENT_WON) {
             this.view.showOpponentWonDialog();
             this.navigator.navigateToStartView();
         }
-        if (winState == WinState.IWon) {
+        if (winState == WinState.I_WON) {
             this.view.showIWonDialog();
             this.navigator.navigateToStartView();
         }

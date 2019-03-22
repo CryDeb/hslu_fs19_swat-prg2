@@ -17,6 +17,7 @@ public class LocalGameCreationViewPanel extends JPanel implements LocalGameCreat
 
     private LocalGameCreationViewListener localGameCreationViewListener;
 
+
     public LocalGameCreationViewPanel() {
         this.initComponent();
     }
@@ -25,9 +26,9 @@ public class LocalGameCreationViewPanel extends JPanel implements LocalGameCreat
         JButton backButton = new JButton("back");
         JButton resumeGameButton = new JButton("resume");
         JButton newGameButton = new JButton("new");
-        xSizeInput = new JFormattedTextField(new DefaultFormatterFactory(new NumberFormatter(new DecimalFormat("#0"))));
-        ySizeInput = new JFormattedTextField(new DefaultFormatterFactory(new NumberFormatter(new DecimalFormat("#0"))));
-        
+        JFormattedTextField xSizeInput = new JFormattedTextField(new DefaultFormatterFactory(new NumberFormatter(new DecimalFormat("#0"))));
+        JFormattedTextField ySizeInput = new JFormattedTextField(new DefaultFormatterFactory(new NumberFormatter(new DecimalFormat("#0"))));
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         xSizeInput.setMaximumSize(new Dimension(100, 20));
@@ -63,38 +64,35 @@ public class LocalGameCreationViewPanel extends JPanel implements LocalGameCreat
                     .addComponent(newGameButton))
                 .addContainerGap())
         );
-        
+
         xSizeInput.setText("6");
         ySizeInput.setText("4");
 
         backButton.addActionListener(x -> {
             if (this.localGameCreationViewListener != null) {
-                this.localGameCreationViewListener.BackPressed();
+                this.localGameCreationViewListener.backPressed();
             }
         });
-        
+
         resumeGameButton.addActionListener(x -> {
             if (this.localGameCreationViewListener != null) {
-                this.localGameCreationViewListener.ResumeGamePressed();
+                this.localGameCreationViewListener.resumeGamePressed();
             }
         });
-        
+
         newGameButton.addActionListener(x -> {
             if (this.localGameCreationViewListener != null) {
-                this.localGameCreationViewListener.NewGamePressed(Integer.parseInt(xSizeInput.getText()), 
+                this.localGameCreationViewListener.newGamePressed(Integer.parseInt(xSizeInput.getText()),
                         Integer.parseInt(ySizeInput.getText()));
             }
         });
-        this.add(this.xSizeInput);
-        this.add(this.ySizeInput);
+        this.add(xSizeInput);
+        this.add(ySizeInput);
         this.add(backButton);
         this.add(resumeGameButton);
         this.add(newGameButton);
     }
 
-    private JFormattedTextField xSizeInput;
-    private JFormattedTextField ySizeInput;
-    
     @Override
     public void setListener(LocalGameCreationViewListener localGameCreationViewListener) {
         this.localGameCreationViewListener = localGameCreationViewListener;

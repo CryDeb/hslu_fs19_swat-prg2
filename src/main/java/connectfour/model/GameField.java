@@ -50,28 +50,28 @@ public class GameField implements ValidTurnChecker {
             for (int column = 0; column < this.width; column++) {
                 
                 WinState xDisksInARowToTheRightWinResult = this.hasSomebodyXDisksInARowToTheRight(column, row);
-                if (xDisksInARowToTheRightWinResult != WinState.NobodyWon) {
+                if (xDisksInARowToTheRightWinResult != WinState.NOBODY_WON) {
                     return xDisksInARowToTheRightWinResult;
                 }
                 
                 WinState xDisksInARowToTheTopWinResult = this.hasSomebodyXDisksInARowToTheTop(column, row);
-                if (xDisksInARowToTheTopWinResult != WinState.NobodyWon) {
+                if (xDisksInARowToTheTopWinResult != WinState.NOBODY_WON) {
                     return xDisksInARowToTheTopWinResult;
                 }
                 
                 WinState xDisksInARowToTheTopRightWinResult = this.hasSomebodyXDisksInARowToTheTopRight(column, row);
-                if (xDisksInARowToTheTopRightWinResult != WinState.NobodyWon) {
+                if (xDisksInARowToTheTopRightWinResult != WinState.NOBODY_WON) {
                     return xDisksInARowToTheTopRightWinResult;
                 }
                 
                 WinState xDisksInARowToTheTopLeftWinResult = this.hasSomebodyXDisksInARowToTheTopLeft(column, row);
-                if (xDisksInARowToTheTopLeftWinResult != WinState.NobodyWon) {
+                if (xDisksInARowToTheTopLeftWinResult != WinState.NOBODY_WON) {
                     return xDisksInARowToTheTopLeftWinResult;
                 }
             }
         }
 
-        return WinState.NobodyWon;
+        return WinState.NOBODY_WON;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class GameField implements ValidTurnChecker {
             return this.areThoseXDisksOfTheSamePlayer(sumOfNext4DiskIdsToTheRight);
         }
 
-        return WinState.NobodyWon;
+        return WinState.NOBODY_WON;
     }
     
     private boolean diskHasEnoughNeighboursToTheRightToPotentiallyHave4InARow(int column) {
@@ -108,7 +108,7 @@ public class GameField implements ValidTurnChecker {
             return this.areThoseXDisksOfTheSamePlayer(sumOfNext4DiskIdsToTheTop);
         }
 
-        return WinState.NobodyWon;
+        return WinState.NOBODY_WON;
     }
     
     private boolean diskHasEnoughNeighboursToTheTopToPotentiallyHave4InARow(int row) {
@@ -125,7 +125,7 @@ public class GameField implements ValidTurnChecker {
             return this.areThoseXDisksOfTheSamePlayer(sumOfNext4DiskIdsToTheTopRight);
         }
 
-        return WinState.NobodyWon;
+        return WinState.NOBODY_WON;
     }
     
     private boolean diskHasEnoughNeighboursToTheTopRightToPotentiallyHave4InARow(int column, int row) {
@@ -143,7 +143,7 @@ public class GameField implements ValidTurnChecker {
             return this.areThoseXDisksOfTheSamePlayer(sumOfNext4DiskIdsToTheTopLeft);
         }
         
-        return WinState.NobodyWon;
+        return WinState.NOBODY_WON;
     }
     
     private boolean diskHasEnoughNeighboursToTheTopLeftToPotentiallyHave4InARow(int column, int row) {
@@ -152,12 +152,12 @@ public class GameField implements ValidTurnChecker {
     }
     
     private WinState areThoseXDisksOfTheSamePlayer(int sum) {
-        WinState result = WinState.NobodyWon;
+        WinState result = WinState.NOBODY_WON;
         if (sum == this.myDiskId * NUMBER_OF_STONES_TO_WIN) {
-            result = WinState.IWon;
+            result = WinState.I_WON;
         }
         if (sum == this.opponentDiskId * NUMBER_OF_STONES_TO_WIN) {
-            result = WinState.OpponentWon;
+            result = WinState.OPPONENT_WON;
         }
 
         return result;

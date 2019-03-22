@@ -1,7 +1,7 @@
 package connectfour.model;
 
 public enum WinState {
-    NobodyWon,
-    IWon,
-    OpponentWon
+    NOBODY_WON,
+    I_WON,
+    OPPONENT_WON
 }

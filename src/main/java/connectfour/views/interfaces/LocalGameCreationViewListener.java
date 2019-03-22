@@ -1,7 +1,7 @@
 package connectfour.views.interfaces;
 
 public interface LocalGameCreationViewListener {
-    void ResumeGamePressed();
-    void NewGamePressed(int width, int height);
-    void BackPressed();
+    void resumeGamePressed();
+    void newGamePressed(int width, int height);
+    void backPressed();
 }
