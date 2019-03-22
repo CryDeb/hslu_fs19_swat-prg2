@@ -4,8 +4,8 @@ import connect4.model.DiskPosition;
 import connect4.model.Game;
 import connect4.model.GameState;
 import connect4.model.TurnResult;
-import connect4.views.Interfaces.GameView;
-import connect4.views.Interfaces.GameViewListener;
+import connect4.views.interfaces.GameView;
+import connect4.views.interfaces.GameViewListener;
 import connect4.model.WinState;
 import connect4.model.TurnEvaluatedListener;
 

@@ -1,16 +1,16 @@
 package connect4.controller;
 
 import connect4.model.GameState;
-import connect4.model.Network.NetworkPlayerSearcher;
-import connect4.model.Network.RequestHandling.NetworkRequestManager;
-import connect4.model.Network.Settings;
-import connect4.views.Interfaces.GameView;
-import connect4.views.Interfaces.HelpView;
-import connect4.views.Interfaces.LocalGameCreationView;
-import connect4.views.Interfaces.NetworkView;
-import connect4.views.Interfaces.StartView;
-import connect4.views.Interfaces.ViewHandler;
-import connect4.views.subPanel.PlayerTurn;
+import connect4.model.network.NetworkPlayerSearcher;
+import connect4.model.network.request.handling.NetworkRequestManager;
+import connect4.model.network.Settings;
+import connect4.views.interfaces.GameView;
+import connect4.views.interfaces.HelpView;
+import connect4.views.interfaces.LocalGameCreationView;
+import connect4.views.interfaces.NetworkView;
+import connect4.views.interfaces.StartView;
+import connect4.views.interfaces.ViewHandler;
+import connect4.views.subpanel.PlayerTurn;
 
 public class Navigator {
 

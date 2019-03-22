@@ -1,10 +1,10 @@
 package connect4.main;
 
 import connect4.controller.Navigator;
-import connect4.model.Network.NetworkPlayerSearcher;
-import connect4.model.Network.RequestHandling.NetworkRequestManager;
-import connect4.model.Network.RequestHandling.RequestHandlerFactory;
-import connect4.model.Network.Settings;
+import connect4.model.network.NetworkPlayerSearcher;
+import connect4.model.network.request.handling.NetworkRequestManager;
+import connect4.model.network.request.handling.RequestHandlerFactory;
+import connect4.model.network.Settings;
 import connect4.views.ViewHandlerImpl;
 
 class Main {

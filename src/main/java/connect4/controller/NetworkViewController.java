@@ -1,11 +1,11 @@
 package connect4.controller;
 
-import connect4.model.Network.NetworkPlayerSearcher;
-import connect4.model.Network.NewPlayersFoundListener;
-import connect4.model.Network.ProtocolKeywords;
-import connect4.model.Network.Settings;
-import connect4.views.Interfaces.NetworkView;
-import connect4.views.Interfaces.NetworkViewListener;
+import connect4.model.network.NetworkPlayerSearcher;
+import connect4.model.network.NewPlayersFoundListener;
+import connect4.model.network.ProtocolKeywords;
+import connect4.model.network.Settings;
+import connect4.views.interfaces.NetworkView;
+import connect4.views.interfaces.NetworkViewListener;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

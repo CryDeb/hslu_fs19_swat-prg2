@@ -1,7 +1,7 @@
 package connect4.model;
 
-import connect4.model.Network.ProtocolKeywords;
-import connect4.model.Network.Settings;
+import connect4.model.network.ProtocolKeywords;
+import connect4.model.network.Settings;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

@@ -1,7 +1,7 @@
 package connect4.controller;
 
-import connect4.model.Network.Settings;
-import connect4.views.Interfaces.LocalGameCreationViewListener;
+import connect4.model.network.Settings;
+import connect4.views.interfaces.LocalGameCreationViewListener;
 
 public class LocalGameCreationViewController implements LocalGameCreationViewListener {
 

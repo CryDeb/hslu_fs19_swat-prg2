@@ -4,8 +4,8 @@ import connect4.model.AIPlayer;
 import connect4.model.Game;
 import connect4.model.GameField;
 import connect4.model.GameState;
-import connect4.model.Network.Settings;
-import connect4.views.Interfaces.GameView;
+import connect4.model.network.Settings;
+import connect4.views.interfaces.GameView;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

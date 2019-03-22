@@ -1,6 +1,6 @@
 package connect4.controller;
 
-import connect4.views.Interfaces.StartViewListener;
+import connect4.views.interfaces.StartViewListener;
 
 public class StartViewController implements StartViewListener {
 

@@ -3,10 +3,10 @@ package connect4.controller;
 import connect4.model.Game;
 import connect4.model.GameField;
 import connect4.model.GameState;
-import connect4.model.Network.RequestHandling.NetworkRequestManager;
+import connect4.model.network.request.handling.NetworkRequestManager;
 import connect4.model.NetworkPlayer;
 import connect4.model.Player;
-import connect4.views.Interfaces.GameView;
+import connect4.views.interfaces.GameView;
 
 public class NetworkGameViewController extends GameViewController{
 

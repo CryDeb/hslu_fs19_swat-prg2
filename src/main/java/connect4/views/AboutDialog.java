@@ -1,29 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package connect4.views;
 
 import java.awt.FlowLayout;
 
-/**
- *
- * @author z003019u
- */
 class AboutDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AboutDialog
-     */
     public AboutDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 	
     private void initComponents() {
-
-        // Variables declaration - do not modify//GEN-BEGIN:variables
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -34,12 +20,10 @@ class AboutDialog extends javax.swing.JDialog {
         FlowLayout layout = new FlowLayout();
         getContentPane().setLayout(layout);
 		
-        jLabel1.setText("Lorem ipsum dolor sit amet");
+        jLabel1.setText("Help me i am stuck inside this computer");
 
         add(jLabel1);
 
         pack();
     }
-
-    // End of variables declaration//GEN-END:variables
 }

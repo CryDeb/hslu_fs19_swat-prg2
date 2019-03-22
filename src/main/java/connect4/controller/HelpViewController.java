@@ -1,6 +1,6 @@
 package connect4.controller;
 
-import connect4.views.Interfaces.HelpViewListener;
+import connect4.views.interfaces.HelpViewListener;
 
 public class HelpViewController implements HelpViewListener {
 

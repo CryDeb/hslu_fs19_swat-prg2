@@ -1,22 +1,22 @@
 package connect4.views;
 
-import connect4.views.subPanel.LocalGameCreationViewPanel;
-import connect4.views.subPanel.GameViewPanel;
-import connect4.views.Interfaces.GameView;
-import connect4.views.Interfaces.HelpView;
-import connect4.views.Interfaces.LocalGameCreationView;
-import connect4.views.Interfaces.NetworkView;
-import connect4.views.Interfaces.StartView;
-import connect4.views.Interfaces.ViewHandler;
-import connect4.views.subPanel.StartViewPanel;
+import connect4.views.subpanel.LocalGameCreationViewPanel;
+import connect4.views.subpanel.GameViewPanel;
+import connect4.views.interfaces.GameView;
+import connect4.views.interfaces.HelpView;
+import connect4.views.interfaces.LocalGameCreationView;
+import connect4.views.interfaces.NetworkView;
+import connect4.views.interfaces.StartView;
+import connect4.views.interfaces.ViewHandler;
+import connect4.views.subpanel.StartViewPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import connect4.views.subPanel.HelpViewPanel;
-import connect4.views.subPanel.NetworkViewPanel;
+import connect4.views.subpanel.HelpViewPanel;
+import connect4.views.subpanel.NetworkViewPanel;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

@@ -1,6 +1,6 @@
 package connect4.model;
 
-import connect4.model.Network.Settings;
+import connect4.model.network.Settings;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;

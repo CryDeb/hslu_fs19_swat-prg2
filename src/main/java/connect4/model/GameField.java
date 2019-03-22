@@ -1,6 +1,6 @@
 package connect4.model;
 
-import connect4.model.Network.Settings;
+import connect4.model.network.Settings;
 
 public class GameField implements ValidTurnChecker {
 
