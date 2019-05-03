@@ -6,7 +6,7 @@ plugins {
 group 'ch.hslu.prg2'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.11
+sourceCompatibility = 1.12
 
 jar {
     manifest {
