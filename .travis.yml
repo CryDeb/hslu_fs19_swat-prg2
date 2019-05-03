@@ -4,9 +4,15 @@ language: java
 
 jdk: openjdk11
 
+addons:
+  sonarcloud:
+    organization: "sonarcloud_organization_key" # the key of the org you chose at step #3
+    token:
+      secure: $SONAR_AUTH # encrypted value of your token
+
 before_deploy:
     - ./gradlew clean
-    - ./gradlew sonarqube -Dsonar.projectKey=CryDeb_hslu_fs19_swat-prg2 -Dsonar.organization=crydeb-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_AUTH
+    - sonar-scanner
     - ./gradlew jar
 
 deploy:
