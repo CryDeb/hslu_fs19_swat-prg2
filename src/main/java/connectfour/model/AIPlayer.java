@@ -22,6 +22,7 @@ public class AIPlayer extends Player{
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(AIPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                Thread.currentThread().interrupt();
             }
             this.playDiskAndNotify();
         });

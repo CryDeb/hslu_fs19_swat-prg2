@@ -33,7 +33,7 @@ public class ViewHandlerImpl extends JFrame implements ViewHandler{
     private static final String LOCAL_GAME_CREATION_VIEW = "localgamecreationview";
     private static final String GAME_VIEW = "gameview";
 
-    private CardLayout clayout;
+    private CardLayout cardLayout;
     private JPanel cards;
 
     private StartViewPanel startView;
@@ -68,8 +68,8 @@ public class ViewHandlerImpl extends JFrame implements ViewHandler{
 
     private void initGuiComponents(){
 
-        clayout = new CardLayout();
-        cards = new JPanel(clayout);
+        cardLayout = new CardLayout();
+        cards = new JPanel(cardLayout);
 
         startView = new StartViewPanel();
         helpView = new HelpViewPanel();
@@ -106,26 +106,26 @@ public class ViewHandlerImpl extends JFrame implements ViewHandler{
     @Override
     public StartView switchToStartView(){
         this.restoreAfterGame();
-        clayout.show(cards, START_VIEW_NAME);
+        cardLayout.show(cards, START_VIEW_NAME);
         return startView;
     }
     @Override
     public HelpView switchToHelpView(){
         this.restoreAfterGame();
-        clayout.show(cards, HELP_VIEW_NAME);
+        cardLayout.show(cards, HELP_VIEW_NAME);
         return helpView;
     }
 
     @Override
     public NetworkView switchToNetworkView(){
         this.restoreAfterGame();
-        clayout.show(cards, NETWORK_VIEW);
+        cardLayout.show(cards, NETWORK_VIEW);
         return networkView;
     }
     @Override
     public LocalGameCreationView switchToLocalGameCreationView(){
         this.restoreAfterGame();
-        clayout.show(cards, LOCAL_GAME_CREATION_VIEW);
+        cardLayout.show(cards, LOCAL_GAME_CREATION_VIEW);
         return localGameCreationView;
     }
 
@@ -134,7 +134,7 @@ public class ViewHandlerImpl extends JFrame implements ViewHandler{
         gameView.startGame(width, height);
         this.setSize(gameView.getSize().width+50, gameView.getSize().height+140);
         gameMenu.setVisible(true);
-        clayout.show(cards, GAME_VIEW);
+        cardLayout.show(cards, GAME_VIEW);
         return gameView;
     }
 

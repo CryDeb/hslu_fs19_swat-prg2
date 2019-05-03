@@ -37,6 +37,7 @@ public class NetworkPlayerSearcher {
                 Thread.sleep(10000);
             } catch (IOException | InterruptedException ex) {
                 Logger.getLogger(NetworkPlayerSearcher.class.getName()).log(Level.SEVERE, null, ex);
+                Thread.currentThread().interrupt();
             }
         }
     }
@@ -52,7 +53,7 @@ public class NetworkPlayerSearcher {
     private List<String> getAvailableHostsInNetwork() throws IOException {
         List<String> availableHosts = new ArrayList<>();
 
-        InetAddress localHostLANAddress = LocalIpProvider.getLocalHostLANAddress();
+        InetAddress localHostLANAddress = LocalIpProvider.getLocalhostLANAddress();
         String localHostAddress = localHostLANAddress.getHostAddress();
         
         for (int i = 0; i < 255; i++) {

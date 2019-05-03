@@ -3,42 +3,40 @@ package connectfour.model.network;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.UnknownHostException;
-import java.util.Enumeration;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Optional;
 
 class LocalIpProvider {
     private LocalIpProvider(){}
+    public static Comparator<InetAddress> inetComperator = new InetAddressSorterByIsSiteLocal();
 
-    public static InetAddress getLocalHostLANAddress() throws UnknownHostException {
+    public static InetAddress getLocalhostLANAddress() throws UnknownHostException {
         try {
-            InetAddress candidateAddress = null;
-            for (Enumeration ifaces = NetworkInterface.getNetworkInterfaces(); ifaces.hasMoreElements();) {
-                NetworkInterface iface = (NetworkInterface) ifaces.nextElement();
-                if (!"docker0".equals(iface.getName())) {
-                    for (Enumeration inetAddrs = iface.getInetAddresses(); inetAddrs.hasMoreElements();) {
-                        InetAddress inetAddr = (InetAddress) inetAddrs.nextElement();
-                        if (!inetAddr.isLoopbackAddress()) {
-                            if (inetAddr.isSiteLocalAddress()) {
-                                return inetAddr;
-                            } else if (candidateAddress == null) {
-                                candidateAddress = inetAddr;
-                            }
-                        }
-                    }
-                }
-            }
-            if (candidateAddress != null) {
-                return candidateAddress;
-            }
-
-            InetAddress jdkSuppliedAddress = InetAddress.getLocalHost();
-            if (jdkSuppliedAddress == null) {
-                throw new UnknownHostException("The JDK InetAddress.getLocalHost() method unexpectedly returned null.");
-            }
-            return jdkSuppliedAddress;
+            Optional<InetAddress> myNetAddress = Collections.list(NetworkInterface.getNetworkInterfaces()).stream()
+                    .filter(iface -> "docker0".equals(iface.getName()))
+                    .flatMap(iface -> Collections.list(iface.getInetAddresses()).stream())
+                    .filter(inetAddress -> inetAddress.isLoopbackAddress())
+                    .sorted(inetComperator)
+                    .findFirst();
+            return myNetAddress.orElse(InetAddress.getLocalHost());
         } catch (Exception e) {
             UnknownHostException unknownHostException = new UnknownHostException("Failed to determine LAN address: " + e);
             unknownHostException.initCause(e);
             throw unknownHostException;
+        }
+    }
+
+    private static class InetAddressSorterByIsSiteLocal implements Comparator<InetAddress> {
+        @Override
+        public int compare(InetAddress firstAddress, InetAddress secondAddress) {
+            final boolean firstSiteLocal = firstAddress.isSiteLocalAddress();
+            final boolean secondSiteLocal = secondAddress.isSiteLocalAddress();
+
+            if (firstSiteLocal ^ secondSiteLocal) {
+                return 0;
+            }
+            return (firstSiteLocal ? 1 : -1);
         }
     }
 }

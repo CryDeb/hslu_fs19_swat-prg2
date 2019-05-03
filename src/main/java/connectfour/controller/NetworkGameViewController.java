@@ -1,11 +1,7 @@
 package connectfour.controller;
 
-import connectfour.model.Game;
-import connectfour.model.GameField;
-import connectfour.model.GameState;
+import connectfour.model.*;
 import connectfour.model.network.request.handling.NetworkRequestManager;
-import connectfour.model.NetworkPlayer;
-import connectfour.model.Player;
 import connectfour.views.interfaces.GameView;
 
 public class NetworkGameViewController extends GameViewController{

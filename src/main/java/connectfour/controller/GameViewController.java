@@ -1,13 +1,8 @@
 package connectfour.controller;
 
-import connectfour.model.DiskPosition;
-import connectfour.model.Game;
-import connectfour.model.GameState;
-import connectfour.model.TurnResult;
+import connectfour.model.*;
 import connectfour.views.interfaces.GameView;
 import connectfour.views.interfaces.GameViewListener;
-import connectfour.model.WinState;
-import connectfour.model.TurnEvaluatedListener;
 
 public abstract class GameViewController implements GameViewListener, TurnEvaluatedListener {
 
@@ -24,9 +19,7 @@ public abstract class GameViewController implements GameViewListener, TurnEvalua
     abstract void init(GameState startGameState);
 
     public abstract void initForResumeGame();
-    
-    @Override
-    public abstract void saveGamePressed();
+
     @Override public void closeGamePressed(){
         this.navigator.navigateToStartView();
     }
